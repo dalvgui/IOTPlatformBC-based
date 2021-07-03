@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block titulo %} Información de Dispositivo {% endblock %}
+
+
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">DeviceNet App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="/">Home </a>
+        </li>         
+        <li class="nav-item active">
+            <a class="nav-link" href="/devices">Devices</a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" href="/create">Create Device</a>
+      </li>
+                  
+      </ul> 
+      <ul class="nav navbar-nav ml-auto ">                                
+        {% if token %}
+        {% if username %}
+        <li class="nav-item">
+          <p class="nav-link" href="#"><i class="bi bi-person-check" style="color: cornflowerblue;"></i> {{username}}</p>
+        </li> 
+        {% endif %}
+        
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"> <i class="bi bi-person-circle"></i> Logout</a>
+        </li>                       
+        {% else %}
+        <li class="nav-item ">
+          <a class="nav-link" href="/login"> <i class="bi bi-person-circle"></i> Login</a>
+        </li>  
+        {% endif %}
+      </ul>      
+    </div>
+  </nav>
+{% endblock %}
+
+
+
+{% block contenido_principal %}
+
+<div class="row mt-4">  
+
+  <p class="lead">
+    Device Information
+  </p>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>       
+        <th scope="col">Attribute</th>
+        <th scope="col">Value</th>        
+      </tr>
+    </thead>
+    <tbody>
+     
+        <tr>       
+          <td>UUID</td>
+          <td>{{device.deviceId}}</td>
+        </tr>                    
+        
+        <tr>       
+          <td>Date</td>
+          <td>{{device.issue_date}}</td>
+        </tr>                  
+                
+        <tr>       
+          <td>Owner</td>
+          <td>{{device.issuer}}</td>
+        </tr>                                
+        
+
+        {% if device.ip %}
+        <tr>       
+          <td>IP</td>         
+          <td>{{device.ip}}</td>       
+        </tr>          
+        {% endif %}
+
+        {% if device.mac %}
+        <tr>       
+          <td>MAC</td>         
+          <td>{{device.mac}}</td>       
+        </tr>          
+        {% endif %}
+
+        {% if device.modelo %}
+        <tr>       
+          <td>Model</td>         
+          <td>{{device.modelo}}</td>       
+        </tr>          
+        {% endif %}
+
+        {% if device.hash_generated %}
+        <tr>       
+          <td>Hash</td>         
+          <td>{{device.hash_generated}}</td>       
+        </tr>          
+        {% endif %}
+
+        <tr>       
+          <td>State</td>         
+          <td>{{device.state_name}}</td>       
+        </tr>    
+        
+    </tbody>
+  </table> 
+
+  <div class="row mt-2">
+    <div class="col-md-4"></div>
+    <div class="col-md-4"></div>
+    {% if device.state == 0 %}    
+      <a  href="/register/{{ device.deviceId }}" class="uk-button uk-button-primary">Subscribe physical device</a>                   
+    {% endif %}
+    {% if device.state == 1 %}    
+    <a  href="/cancel/{{ device.deviceId }}" class="uk-button uk-button-danger">Unsubscribe</a>                   
+    {% endif %}
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+</div>
+
+{% endblock %}

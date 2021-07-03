@@ -1,0 +1,44 @@
+[
+    {
+        "transactionName": "deviceExists",
+        "transactionLabel": "A test deviceExists transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "createDevice",
+        "transactionLabel": "A test createDevice transaction",
+        "arguments": [
+            "001",
+            "some value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "readDevice",
+        "transactionLabel": "A test readDevice transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "updateDevice",
+        "transactionLabel": "A test updateDevice transaction",
+        "arguments": [
+            "001",
+            "some other value"
+        ],
+        "transientData": {}
+    },
+    {
+        "transactionName": "deleteDevice",
+        "transactionLabel": "A test deleteDevice transaction",
+        "arguments": [
+            "001"
+        ],
+        "transientData": {}
+    }
+]

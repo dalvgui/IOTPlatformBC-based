@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block titulo %} Inicio {% endblock %}
+
+{% block contenido_principal %}
+<div role="main"  class="jumbotron mt-3">
+    <h1 class="display-4">Welcome!</h1>
+    <p class="lead">This you are seeing is the DeviceNet network client application. It allows you to perform a series of actions on the different devices created on the network from what is established by the SmartContract.</p>
+    <hr class="my-4">
+    <p>If you want to create your first <b> Device </b> and register it on the web, click on the following button!</p>
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" href="/create" role="button">Create</a>
+    </p>
+  </div>
+
+{% endblock %}

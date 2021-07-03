@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block titulo %} Inicio {% endblock %}
+
+
+
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">DeviceNet App</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" href="/">Home </a>
+        </li>         
+        <li class="nav-item active">
+            <a class="nav-link" href="/devices">Devices</a>
+        </li>
+
+        <li class="nav-item ">
+          <a class="nav-link" href="/create">Create Device</a>
+      </li>
+                  
+      </ul> 
+      <ul class="nav navbar-nav ml-auto ">                                
+        {% if token %}
+        {% if username %}
+        <li class="nav-item">
+          <p class="nav-link" href="#"><i class="bi bi-person-check" style="color: cornflowerblue;"></i> {{username}}</p>
+        </li> 
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"> <i class="bi bi-person-circle"></i> Logout</a>
+        </li>                       
+        {% else %}
+        <li class="nav-item ">
+          <a class="nav-link" href="/login"> <i class="bi bi-person-circle"></i> Login</a>
+        </li>  
+        {% endif %}
+      </ul>      
+    </div>
+  </nav>
+{% endblock %}
+
+
+{% block contenido_principal %}
+
+<div class="row mt-4">  
+    {% for device in devices %}
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+      <div>
+        <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+            <h3 class="uk-card-title"><i class="bi bi-tag-fill"></i> Device</h3>
+            <p>{{device.deviceId}}</p>
+            <p >{{device.issuer}}</p>       
+            <p>{{device.issue_date}}</p>                 
+            <a  href="/devices/{{ device.deviceId }}" >View Device</a>              
+            
+        </div>
+      </div>   
+    </div>
+    {% endfor %}
+ 
+</div>
+
+{% endblock %}
